@@ -1,7 +1,7 @@
 name: maven test
 
 on:
-  pull-request:
+  pull_request:
     branches:
       - develop
 jobs:
@@ -13,5 +13,6 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11'
+          distribution: 'adopt'
       - name: maven-test
         run: mvn test
