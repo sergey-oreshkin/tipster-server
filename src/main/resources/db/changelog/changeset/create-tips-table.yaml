@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-tips
+      author: Irina Slipchenko
+      changes:
+        - createTable:
+            tableName: tips
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: varchar(100)
+              - column:
+                  name: text
+                  type: varchar(2000)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created
+                  type: timestamp
+                  defaultValueComputed: current_timestamp
+              - column:
+                  name: updated
+                  type: timestamp
+                  defaultValueComputed: current_timestamp
+              - column:
+                  name: themes
+                  type: bigint
+                  constraints:
+                    foreignKeyName: themes_tips_fk
+                    referencedTableName: themes
+                    referencedColumnNames: id
+
+
+

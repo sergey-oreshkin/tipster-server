@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-themes
+      author: Irina Slipchenko
+      changes:
+        - createTable:
+            tableName: themes
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: varchar(100)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: created
+                  type: timestamp
+                  defaultValueComputed: current_timestamp
+              - column:
+                  name: updated
+                  type: timestamp
+                  defaultValueComputed: current_timestamp
+              - column:
+                  name: creator
+                  type: bigint
+                  constraints:
+                    foreignKeyName: users_themes_fk
+                    referencedTableName: users
+                    referencedColumnNames: id
