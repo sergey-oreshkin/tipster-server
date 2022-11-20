@@ -2,9 +2,9 @@ spring:
   liquibase:
     enabled: true
   datasource:
-    url: jdbc:h2:file:./db # в корне проект файл бд db.mv.db
-    username: test         # имя пользователя консоли
-    password: password     # пароль консоли
+    url: jdbc:h2:file:./db
+    username: test
+    password: password
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
