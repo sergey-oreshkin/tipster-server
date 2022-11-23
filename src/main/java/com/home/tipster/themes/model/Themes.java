@@ -1,6 +1,5 @@
 package com.home.tipster.themes.model;
 
-import com.home.tipster.users.Users;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
