@@ -15,7 +15,9 @@ public class ThemesFactory {
 
     private final ThemesRepository themesRepository;
 
-    public Themes getTheme(Long id){
-       return themesRepository.findById(id).orElseThrow(RuntimeException::new);
+    public Themes getTheme(Long id) {
+        return themesRepository.findById(id).orElseThrow(
+                () -> new RuntimeException(
+                        String.format("The theme with id = %d wasn't found", id)));
     }
 }

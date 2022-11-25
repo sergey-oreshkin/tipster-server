@@ -10,7 +10,5 @@ import java.util.List;
  */
 public interface TipRepository extends JpaRepository<Tip, Long> {
 
-//    @Query("SELECT t FROM Tip t WHERE t.theme.id = :themeId")
-    List<Tip> findByThemeId(Long themeId);
-//            @Param("themeId") Long themeId);
+    List<Tip> findAllByThemeId(Long themeId);
 }
