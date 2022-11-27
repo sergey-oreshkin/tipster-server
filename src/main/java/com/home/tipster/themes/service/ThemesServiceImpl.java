@@ -1,6 +1,7 @@
 package com.home.tipster.themes.service;
 
 
+import com.home.tipster.exception.ConflictException;
 import com.home.tipster.themes.model.Themes;
 import com.home.tipster.themes.repository.ThemesRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -23,16 +25,17 @@ public class ThemesServiceImpl {
     }
 
     private Themes saveOrElseThrow(Themes themes) {
-        return themesRepository.save(themes);
-
-//        try {
-//            return themesRepository.save(themes);
-//        } catch (DataIntegrityViolationException ex) {
-//            throw new ConflictException("Themes title already in use", "title = " + themes.getTitle());
-//        }
+        try {
+            return themesRepository.save(themes);
+        } catch (DataIntegrityViolationException ex) {
+            log.info("Error, title not unique - {}", themes.getTitle());
+            throw new ConflictException("This title already exists - " + themes.getTitle());
+        }
     }
 
     public List<Themes> getAll() {
-        return themesRepository.findAll();
+        return themesRepository.findAll().stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

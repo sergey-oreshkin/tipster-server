@@ -1,6 +1,5 @@
 package com.home.tipster.themes.model;
 
-import com.home.tipster.users.Users;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,7 +16,7 @@ import java.util.Objects;
 @Table(name = "themes")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Themes {
+public class Themes implements Comparable<Themes>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
@@ -44,5 +43,10 @@ public class Themes {
     @Override
     public int hashCode() {
         return getClass().hashCode();
+    }
+
+    @Override
+    public int compareTo(Themes o) {
+        return this.title.compareTo(o.title);
     }
 }

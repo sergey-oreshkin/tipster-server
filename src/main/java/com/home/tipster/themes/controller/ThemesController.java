@@ -28,7 +28,7 @@ public class ThemesController {
     }
 
     @GetMapping
-    public List<ThemesDto> getAll(){
+    public List<ThemesDto> getAll() {
         return themesMapper.toDto(themesService.getAll());
     }
 }
