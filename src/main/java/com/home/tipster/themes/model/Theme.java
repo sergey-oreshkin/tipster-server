@@ -16,16 +16,19 @@ import java.util.Objects;
 @Table(name = "themes")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Themes implements Comparable<Themes>{
+public class Theme {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    @Column(name = "id")
+    private Long id;
 
-    @Column(unique = true)
+    @Column(name = "title", unique = true)
     private String title;
     @CreationTimestamp
+    @Column(name = "created")
     private LocalDateTime created;
     @UpdateTimestamp
+    @Column(name = "updated")
     private LocalDateTime updated;
 
 //    @ManyToOne
@@ -36,17 +39,12 @@ public class Themes implements Comparable<Themes>{
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || Hibernate.getClass(this) != Hibernate.getClass(obj)) return false;
-        Themes themes = (Themes) obj;
-        return id != null && Objects.equals(id, themes.id);
+        Theme theme = (Theme) obj;
+        return id != null && Objects.equals(id, theme.id);
     }
 
     @Override
     public int hashCode() {
         return getClass().hashCode();
-    }
-
-    @Override
-    public int compareTo(Themes o) {
-        return this.title.compareTo(o.title);
     }
 }
