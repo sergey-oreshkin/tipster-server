@@ -1,9 +1,9 @@
 package com.home.tipster.themes.controller;
 
-import com.home.tipster.themes.dto.ThemesDto;
-import com.home.tipster.themes.model.Themes;
+import com.home.tipster.themes.dto.ThemeDto;
+import com.home.tipster.themes.model.Theme;
 import com.home.tipster.themes.service.ThemesMapper;
-import com.home.tipster.themes.service.ThemesServiceImpl;
+import com.home.tipster.themes.service.ThemesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -18,17 +18,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ThemesController {
     private final ThemesMapper themesMapper;
-    private final ThemesServiceImpl themesService;
+    private final ThemesService themesService;
 
     @PostMapping
-    public ThemesDto create(@Valid @RequestBody ThemesDto themesDto) {
-        log.info("create themes Title={}", themesDto.getTitle());
-        Themes themes = themesMapper.toThemes(themesDto);
-        return themesMapper.toDto(themesService.create(themes));
+    public ThemeDto create(@Valid @RequestBody ThemeDto themeDto) {
+        log.info("create themes Title={}", themeDto.getTitle());
+        Theme theme = themesMapper.toThemes(themeDto);
+        return themesMapper.toDto(themesService.create(theme));
     }
 
     @GetMapping
-    public List<ThemesDto> getAll() {
+    public List<ThemeDto> getAll() {
         return themesMapper.toDto(themesService.getAll());
     }
 }

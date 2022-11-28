@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ThemesDto {
+public class ThemeDto {
 
     private Long id;
     @NotBlank(message = "title is blank")

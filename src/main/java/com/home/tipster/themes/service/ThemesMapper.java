@@ -1,7 +1,7 @@
 package com.home.tipster.themes.service;
 
-import com.home.tipster.themes.dto.ThemesDto;
-import com.home.tipster.themes.model.Themes;
+import com.home.tipster.themes.dto.ThemeDto;
+import com.home.tipster.themes.model.Theme;
 import org.mapstruct.Mapper;
 
 import java.util.List;
@@ -9,11 +9,11 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ThemesMapper {
 
-    Themes toThemes(ThemesDto themesDto);
+    Theme toThemes(ThemeDto themeDto);
 
-    ThemesDto toDto(Themes themes);
+    ThemeDto toDto(Theme theme);
 
-    List<ThemesDto> toDto(List<Themes> themes);
+    List<ThemeDto> toDto(List<Theme> themes);
 
 
 }
