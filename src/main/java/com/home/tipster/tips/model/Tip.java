@@ -1,6 +1,6 @@
 package com.home.tipster.tips.model;
 
-import com.home.tipster.themes.model.Themes;
+import com.home.tipster.themes.model.Theme;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
@@ -43,7 +43,7 @@ public class Tip {
 
     @ManyToOne
     @JoinColumn(name = "themes", referencedColumnName = "id")
-    private Themes theme;
+    private Theme theme;
 
     @Override
     public boolean equals(Object o) {

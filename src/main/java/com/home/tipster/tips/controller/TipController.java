@@ -1,5 +1,6 @@
 package com.home.tipster.tips.controller;
 
+import com.home.tipster.exception.NotFoundException;
 import com.home.tipster.tips.mapper.TipMapper;
 import com.home.tipster.tips.model.Tip;
 import com.home.tipster.tips.model.TipDto;
@@ -26,14 +27,14 @@ public class TipController {
     private final TipMapper tipMapper;
 
     @PostMapping
-    public TipDto create(@Valid @RequestBody TipDto tipDto){
+    public TipDto create(@Valid @RequestBody TipDto tipDto) throws NotFoundException {
         log.info("Creates tips with title {}", tipDto.getTitle());
         Tip tip = tipMapper.toTips(tipDto);
         return tipMapper.toDto(tipService.create(tip));
     }
 
     @PutMapping
-    public TipDto update(@Valid @RequestBody TipDto tipDto){
+    public TipDto update(@Valid @RequestBody TipDto tipDto) throws NotFoundException {
         log.info("Updates tips with id {}", tipDto.getId());
         Tip tip = tipMapper.toTips(tipDto);
         return tipMapper.toDto(tipService.create(tip));
@@ -47,7 +48,7 @@ public class TipController {
 
 
     @GetMapping(value = "/{tipId}")
-    public TipDto getById(@PathVariable long tipId){
+    public TipDto getById(@PathVariable long tipId) throws NotFoundException {
         return tipMapper.toDto(tipService.getById(tipId));
     }
 }
