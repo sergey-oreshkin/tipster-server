@@ -38,7 +38,6 @@ public class TipServiceImpl implements TipService {
 
     @Override
     public List<Tip> getAll(long themeId) {
-        getThemeOrThrow(themeId);
         return tipRepository.findAllByThemeId(themeId);
     }
 
