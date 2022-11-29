@@ -25,7 +25,7 @@ public class TipServiceImpl implements TipService {
 
     @Override
     public Tip create(Tip tip) {
-        getTipOrThrow(tip.getTheme().getId());
+        getThemeOrThrow(tip.getTheme().getId());
         return tipRepository.save(tip);
     }
 

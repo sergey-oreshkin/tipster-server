@@ -17,6 +17,7 @@ public class TipDto {
     private String title;
     @NotNull
     private String text;
+    @NotNull
     private Long theme;
 
 }

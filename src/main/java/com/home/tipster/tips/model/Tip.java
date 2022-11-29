@@ -17,7 +17,6 @@ import java.util.Objects;
 @Setter
 @Entity
 @Builder
-@ToString
 @Table(name = "tips")
 @NoArgsConstructor
 @AllArgsConstructor
