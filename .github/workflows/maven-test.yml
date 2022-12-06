@@ -15,4 +15,4 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: maven-test
-        run: mvn test
+        run: mvn validate

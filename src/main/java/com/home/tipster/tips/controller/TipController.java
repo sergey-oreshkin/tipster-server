@@ -42,7 +42,7 @@ public class TipController {
 
 
     @GetMapping
-    public List<TipDto> getAll(@RequestParam(value = "themeId") long themeId){
+    public List<TipDto> getAll(@RequestParam(value = "themeId") long themeId) {
         return tipMapper.toDto(tipService.getAll(themeId));
     }
 
