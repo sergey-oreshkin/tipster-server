@@ -37,18 +37,18 @@ public class TipController {
     public TipDto update(@Valid @RequestBody TipDto tipDto) throws NotFoundException {
         log.info("Updates tips with id {}", tipDto.getId());
         Tip tip = tipMapper.toTips(tipDto);
-        return tipMapper.toDto(tipService.create(tip));
+        return tipMapper.toDto(tipService.update(tip));
     }
 
 
     @GetMapping
-    public List<TipDto> getAll(@RequestParam(value = "themeId") long themeId){
+    public List<TipDto> getAll(@RequestParam(value = "themeId") Long themeId){
         return tipMapper.toDto(tipService.getAll(themeId));
     }
 
 
     @GetMapping(value = "/{tipId}")
-    public TipDto getById(@PathVariable long tipId) throws NotFoundException {
+    public TipDto getById(@PathVariable Long tipId) throws NotFoundException {
         return tipMapper.toDto(tipService.getById(tipId));
     }
 }
