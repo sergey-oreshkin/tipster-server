@@ -27,14 +27,14 @@ public class TipController {
     private final TipMapper tipMapper;
 
     @PostMapping
-    public TipDto create(@Valid @RequestBody TipDto tipDto) throws NotFoundException {
+    public TipDto create(@Valid @RequestBody TipDto tipDto) {
         log.info("Creates tips with title {}", tipDto.getTitle());
         Tip tip = tipMapper.toTips(tipDto);
         return tipMapper.toDto(tipService.create(tip));
     }
 
     @PutMapping
-    public TipDto update(@Valid @RequestBody TipDto tipDto) throws NotFoundException {
+    public TipDto update(@Valid @RequestBody TipDto tipDto) {
         log.info("Updates tips with id {}", tipDto.getId());
         Tip tip = tipMapper.toTips(tipDto);
         return tipMapper.toDto(tipService.update(tip));
@@ -42,13 +42,13 @@ public class TipController {
 
 
     @GetMapping
-    public List<TipDto> getAll(@RequestParam(value = "themeId") Long themeId){
+    public List<TipDto> getAll(@RequestParam(value = "themeId") Long themeId) {
         return tipMapper.toDto(tipService.getAll(themeId));
     }
 
 
     @GetMapping(value = "/{tipId}")
-    public TipDto getById(@PathVariable Long tipId) throws NotFoundException {
+    public TipDto getById(@PathVariable Long tipId) {
         return tipMapper.toDto(tipService.getById(tipId));
     }
 }

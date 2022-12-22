@@ -43,15 +43,15 @@ public class TipServiceImpl implements TipService {
     }
 
     @Override
-    public Tip getById(long tipId) throws NotFoundException {
+    public Tip getById(long tipId) {
         return getTipOrThrow(tipId);
     }
 
-    private Tip getTipOrThrow(Long id) throws NotFoundException {
+    private Tip getTipOrThrow(Long id) {
         return tipFactory.getTip(id);
     }
 
-    private Theme getThemeOrThrow(Long themeId) throws NotFoundException {
+    private Theme getThemeOrThrow(Long themeId) {
         return themesFactory.getTheme(themeId);
     }
 }

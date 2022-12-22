@@ -10,11 +10,11 @@ import java.util.List;
  */
 public interface TipService {
 
-    Tip create(Tip tip) throws NotFoundException;
+    Tip create(Tip tip);
 
-    Tip update(Tip tip) throws NotFoundException;
+    Tip update(Tip tip);
 
     List<Tip> getAll(long themeId);
 
-    Tip getById(long tipId) throws NotFoundException;
+    Tip getById(long tipId);
 }
