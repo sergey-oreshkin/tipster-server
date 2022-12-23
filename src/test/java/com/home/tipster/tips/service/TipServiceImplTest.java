@@ -12,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -78,7 +79,7 @@ class TipServiceImplTest {
     }
 
     @Test
-    void create_shouldThrow_WhenRepositoryThrow(){
+    void create_shouldThrow_WhenRepositoryThrow() {
 
         when(tipRepository.save(BASE_TIP)).thenThrow(new NotFoundException(NOT_FOUND_MESSAGE));
 
@@ -103,13 +104,13 @@ class TipServiceImplTest {
     }
 
     @Test()
-    void update_shouldThrow_WhenFactoryThrow(){
+    void update_shouldThrow_WhenFactoryThrow() {
 
         when(tipFactory.getTip(BASE_TIP_ID)).thenThrow(new NotFoundException(NOT_FOUND_MESSAGE));
 
         final NotFoundException exception = assertThrows(
                 NotFoundException.class,
-                ()-> tipService.update(BASE_TIP));
+                () -> tipService.update(BASE_TIP));
 
         assertEquals(NOT_FOUND_MESSAGE, exception.getMessage());
     }
@@ -135,12 +136,12 @@ class TipServiceImplTest {
     }
 
     @Test
-    void getById_shouldThrow_WhenFactoryThrow(){
+    void getById_shouldThrow_WhenFactoryThrow() {
         when(tipFactory.getTip(BASE_TIP_ID)).thenThrow(new NotFoundException(NOT_FOUND_MESSAGE));
 
         final NotFoundException exception = assertThrows(
                 NotFoundException.class,
-                ()-> tipService.getById(BASE_TIP_ID));
+                () -> tipService.getById(BASE_TIP_ID));
 
         assertEquals(NOT_FOUND_MESSAGE, exception.getMessage());
     }

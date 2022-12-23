@@ -1,6 +1,5 @@
 package com.home.tipster.tips.service;
 
-import com.home.tipster.exception.NotFoundException;
 import com.home.tipster.tips.model.Tip;
 
 import java.util.List;
