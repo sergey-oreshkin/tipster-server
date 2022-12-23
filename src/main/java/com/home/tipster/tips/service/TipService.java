@@ -1,6 +1,5 @@
 package com.home.tipster.tips.service;
 
-import com.home.tipster.exception.NotFoundException;
 import com.home.tipster.tips.model.Tip;
 
 import java.util.List;
@@ -14,7 +13,7 @@ public interface TipService {
 
     Tip update(Tip tip);
 
-    List<Tip> getAll(long themeId);
+    List<Tip> getAll(Long themeId);
 
-    Tip getById(long tipId);
+    Tip getById(Long tipId);
 }

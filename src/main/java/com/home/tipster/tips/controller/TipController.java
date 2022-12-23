@@ -1,6 +1,5 @@
 package com.home.tipster.tips.controller;
 
-import com.home.tipster.exception.NotFoundException;
 import com.home.tipster.tips.mapper.TipMapper;
 import com.home.tipster.tips.model.Tip;
 import com.home.tipster.tips.model.TipDto;

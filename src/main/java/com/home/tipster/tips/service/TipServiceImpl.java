@@ -1,6 +1,5 @@
 package com.home.tipster.tips.service;
 
-import com.home.tipster.exception.NotFoundException;
 import com.home.tipster.themes.factory.ThemesFactory;
 import com.home.tipster.themes.model.Theme;
 import com.home.tipster.tips.factory.TipFactory;
@@ -25,25 +24,25 @@ public class TipServiceImpl implements TipService {
     private final TipMapper tipMapper;
 
     @Override
-    public Tip create(Tip tip) throws NotFoundException {
+    public Tip create(Tip tip) {
         getThemeOrThrow(tip.getTheme().getId());
         return tipRepository.save(tip);
     }
 
     @Override
-    public Tip update(Tip tip) throws NotFoundException {
+    public Tip update(Tip tip) {
         Tip oldTip = getTipOrThrow(tip.getId());
         tipMapper.update(tip, oldTip);
         return tipRepository.save(oldTip);
     }
 
     @Override
-    public List<Tip> getAll(long themeId) {
+    public List<Tip> getAll(Long themeId) {
         return tipRepository.findAllByThemeId(themeId);
     }
 
     @Override
-    public Tip getById(long tipId) {
+    public Tip getById(Long tipId) {
         return getTipOrThrow(tipId);
     }
 
