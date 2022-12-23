@@ -68,5 +68,7 @@ class TipFactoryTest {
                 () -> tipFactory.getTip(BASE_TIP_ID));
 
         assertEquals(NOT_FOUND_MESSAGE, exception.getMessage());
+
+        verify(tipRepository, times(1)).findById(BASE_TIP_ID);
     }
 }
