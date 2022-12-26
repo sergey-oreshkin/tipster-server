@@ -41,19 +41,16 @@ class ThemesFactoryTest {
 
     @Test
     void getTheme_shouldReturnThemeSuccessful() {
-        when(themesRepository.findById(BASE_THEME_ID))
-                .thenReturn(Optional.ofNullable(BASE_THEME));
+        when(themesRepository.findById(BASE_THEME_ID)).thenReturn(Optional.of(BASE_THEME));
 
         assertEquals(BASE_THEME, themeFactory.getTheme(BASE_THEME_ID));
 
-        verify(themesRepository, times(1))
-                .findById(BASE_THEME_ID);
+        verify(themesRepository, times(1)).findById(BASE_THEME_ID);
     }
 
     @Test
     void getTheme_shouldThrow_whenRepositoryThrow() {
-        when(themesRepository.findById(BASE_THEME_ID))
-                .thenThrow(new NotFoundException(NOT_FOUND_MESSAGE));
+        when(themesRepository.findById(BASE_THEME_ID)).thenThrow(new NotFoundException(NOT_FOUND_MESSAGE));
 
         final NotFoundException exception = assertThrows(
                 NotFoundException.class,
@@ -61,8 +58,7 @@ class ThemesFactoryTest {
 
         assertEquals(NOT_FOUND_MESSAGE, exception.getMessage());
 
-        verify(themesRepository, times(1))
-                .findById(BASE_THEME_ID);
+        verify(themesRepository, times(1)).findById(BASE_THEME_ID);
 
     }
 }
