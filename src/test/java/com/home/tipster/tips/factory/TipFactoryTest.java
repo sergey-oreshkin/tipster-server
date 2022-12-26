@@ -51,7 +51,7 @@ class TipFactoryTest {
     @Test
     void getTip_shouldReturnTipSuccessful() {
 
-        when(tipRepository.findById(BASE_TIP_ID)).thenReturn(Optional.ofNullable(BASE_TIP));
+        when(tipRepository.findById(BASE_TIP_ID)).thenReturn(Optional.of(BASE_TIP));
 
         assertEquals(BASE_TIP, tipFactory.getTip(BASE_TIP_ID));
 
