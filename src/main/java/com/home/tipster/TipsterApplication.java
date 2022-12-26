@@ -10,4 +10,5 @@ public class TipsterApplication {
         SpringApplication.run(TipsterApplication.class, args);
     }
 
+
 }

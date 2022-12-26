@@ -16,7 +16,7 @@ public class TipFactory {
 
     private final TipRepository tipRepository;
 
-    public Tip getTip(Long id) throws NotFoundException {
+    public Tip getTip(Long id) {
         return tipRepository.findById(id).orElseThrow(
                 () -> new NotFoundException(
                         String.format("The tip with id = %d wasn't found", id)));
