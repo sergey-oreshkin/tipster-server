@@ -56,6 +56,13 @@ class TipControllerTest {
             .theme(BASE_THEME)
             .build();
 
+    private static final TipDto BASE_TIP_DTO = TipDto.builder()
+            .id(BASE_TIP_ID)
+            .title(BASE_TIP_TITLE)
+            .text(BASE_TIP_TEXT)
+            .theme(BASE_THEME_ID)
+            .build();
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -68,51 +75,47 @@ class TipControllerTest {
     @MockBean
     private TipMapper tipMapper;
 
-    private final TipMapper mapper = Mappers.getMapper(TipMapper.class);
-
     @Test
     void create_whenValidInput_thenReturnSameTipWithStatusOk() throws Exception {
-        final TipDto tipDto = mapper.toDto(BASE_TIP);
 
-        when(tipMapper.toTips(tipDto)).thenReturn(BASE_TIP);
-        when(tipMapper.toDto(BASE_TIP)).thenReturn(tipDto);
+        when(tipMapper.toTips(BASE_TIP_DTO)).thenReturn(BASE_TIP);
+        when(tipMapper.toDto(BASE_TIP)).thenReturn(BASE_TIP_DTO);
         when(tipService.create(BASE_TIP)).thenAnswer(invocationOnMock -> invocationOnMock.getArguments()[0]);
 
         final MvcResult mvcResult = mockMvc.perform(
                         post(BASE_URI)
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .content(objectMapper.writeValueAsBytes(tipDto)))
+                                .content(objectMapper.writeValueAsBytes(BASE_TIP_DTO)))
                 .andExpect(status().isOk())
                 .andReturn();
 
         verify(tipService, times(1)).create(BASE_TIP);
 
-        assertEquals(objectMapper.writeValueAsString(tipDto), mvcResult.getResponse().getContentAsString());
+        assertEquals(objectMapper.writeValueAsString(BASE_TIP_DTO), mvcResult.getResponse().getContentAsString());
     }
 
     @Test
     void update_whenValidInput_thenReturnSameTipWithStatusOk() throws Exception {
-        final TipDto tipDto = mapper.toDto(BASE_TIP);
 
-        when(tipMapper.toTips(tipDto)).thenReturn(BASE_TIP);
-        when(tipMapper.toDto(BASE_TIP)).thenReturn(tipDto);
+        when(tipMapper.toTips(BASE_TIP_DTO)).thenReturn(BASE_TIP);
+        when(tipMapper.toDto(BASE_TIP)).thenReturn(BASE_TIP_DTO);
         when(tipService.update(BASE_TIP)).thenAnswer(invocationOnMock -> invocationOnMock.getArguments()[0]);
 
         final MvcResult mvcResult = mockMvc.perform(
                         put(BASE_URI)
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .content(objectMapper.writeValueAsBytes(tipDto)))
+                                .content(objectMapper.writeValueAsBytes(BASE_TIP_DTO)))
                 .andExpect(status().isOk())
                 .andReturn();
 
         verify(tipService, times(1)).update(BASE_TIP);
 
-        assertEquals(objectMapper.writeValueAsString(tipDto), mvcResult.getResponse().getContentAsString());
+        assertEquals(objectMapper.writeValueAsString(BASE_TIP_DTO), mvcResult.getResponse().getContentAsString());
     }
 
     @Test
     void getAll_whenValidInput_thenReturnListOfTipsWithStatusOk() throws Exception {
-        final List<TipDto> tipDtos = List.of(mapper.toDto(BASE_TIP));
+        final List<TipDto> tipDtos = List.of(BASE_TIP_DTO);
 
         final List<Tip> LIST_OF_BASE_TIP = List.of(BASE_TIP);
 
@@ -129,9 +132,8 @@ class TipControllerTest {
 
     @Test
     void getById_whenValidInput_thenReturnSameTipWithStatusOk() throws Exception {
-        final TipDto tipDto = mapper.toDto(BASE_TIP);
 
-        when(tipMapper.toDto(BASE_TIP)).thenReturn(tipDto);
+        when(tipMapper.toDto(BASE_TIP)).thenReturn(BASE_TIP_DTO);
         when(tipService.getById(BASE_TIP_ID)).thenReturn(BASE_TIP);
 
         MvcResult mvcResult = mockMvc.perform(
@@ -139,38 +141,35 @@ class TipControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
 
-        assertEquals(objectMapper.writeValueAsString(tipDto), mvcResult.getResponse().getContentAsString());
+        assertEquals(objectMapper.writeValueAsString(BASE_TIP_DTO), mvcResult.getResponse().getContentAsString());
     }
 
     @Test
     void create_whenServiceThrowNotFound_thenReturnStatusNotFound() throws Exception {
-        final TipDto tipDto = mapper.toDto(BASE_TIP);
 
         when(tipService.create(any())).thenThrow(NotFoundException.class);
 
         mockMvc.perform(
                         post(BASE_URI)
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .content(objectMapper.writeValueAsBytes(tipDto)))
+                                .content(objectMapper.writeValueAsBytes(BASE_TIP_DTO)))
                 .andExpect(status().isNotFound());
     }
 
     @Test
     void update_whenServiceThrowNotFound_thenReturnStatusNotFound() throws Exception {
-        final TipDto tipDto = mapper.toDto(BASE_TIP);
 
         when(tipService.update(any())).thenThrow(NotFoundException.class);
 
         mockMvc.perform(
                         put(BASE_URI)
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .content(objectMapper.writeValueAsBytes(tipDto)))
+                                .content(objectMapper.writeValueAsBytes(BASE_TIP_DTO)))
                 .andExpect(status().isNotFound());
     }
 
     @Test
     void getById_whenServiceThrowNotFound_thenReturnStatusNotFound() throws Exception {
-        final TipDto tipDto = mapper.toDto(BASE_TIP);
 
         when(tipService.getById(anyLong())).thenThrow(NotFoundException.class);
 
