@@ -1,6 +1,8 @@
 package com.home.tipster.themes.dto;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+
 import javax.validation.constraints.NotBlank;
 
 @Data

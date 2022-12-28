@@ -61,13 +61,11 @@ class TipFactoryTest {
     @Test
     void getTip_shouldThrow_WhenRepositoryThrow() {
 
-        when(tipRepository.findById(BASE_TIP_ID)).thenThrow(new NotFoundException(NOT_FOUND_MESSAGE));
+        when(tipRepository.findById(BASE_TIP_ID)).thenReturn(Optional.empty());
 
         final NotFoundException exception = assertThrows(
                 NotFoundException.class,
                 () -> tipFactory.getTip(BASE_TIP_ID));
-
-        assertEquals(NOT_FOUND_MESSAGE, exception.getMessage());
 
         verify(tipRepository, times(1)).findById(BASE_TIP_ID);
     }

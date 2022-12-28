@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ class ThemesServiceTest {
 
     public static final String ANOTHER_THEME_TITLE = "Another theme title";
 
-    public static final String CONFLICT_MESSAGE = "This title already exists - ";
+    public static final String CONFLICT_MESSAGE = "This title already exists";
 
     public static final Theme BASE_THEME = Theme.builder().id(BASE_THEME_ID).title(BASE_THEME_TITLE).build();
 
@@ -49,13 +50,11 @@ class ThemesServiceTest {
     @Test
     void create_shouldThrow_WhenRepositoryThrow() {
         when(themesRepository.save(BASE_THEME)).thenThrow(
-                new ConflictException(CONFLICT_MESSAGE + BASE_THEME.getTitle()));
+                new DataIntegrityViolationException(CONFLICT_MESSAGE));
 
         final ConflictException exception = assertThrows(
                 ConflictException.class,
                 () -> themesService.create(BASE_THEME));
-
-        assertEquals(CONFLICT_MESSAGE + BASE_THEME.getTitle(), exception.getMessage());
     }
 
     @Test
