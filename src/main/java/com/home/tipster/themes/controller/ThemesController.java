@@ -1,8 +1,8 @@
 package com.home.tipster.themes.controller;
 
 import com.home.tipster.themes.dto.ThemeDto;
+import com.home.tipster.themes.mapper.ThemesMapper;
 import com.home.tipster.themes.model.Theme;
-import com.home.tipster.themes.service.ThemesMapper;
 import com.home.tipster.themes.service.ThemesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

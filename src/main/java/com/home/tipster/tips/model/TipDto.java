@@ -1,6 +1,5 @@
 package com.home.tipster.tips.model;
 
-import liquibase.pro.packaged.B;
 import lombok.Builder;
 import lombok.Data;
 

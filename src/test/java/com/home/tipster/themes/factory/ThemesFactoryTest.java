@@ -50,15 +50,12 @@ class ThemesFactoryTest {
 
     @Test
     void getTheme_shouldThrow_whenRepositoryThrow() {
-        when(themesRepository.findById(BASE_THEME_ID)).thenThrow(new NotFoundException(NOT_FOUND_MESSAGE));
+        when(themesRepository.findById(BASE_THEME_ID)).thenReturn(Optional.empty());
 
         final NotFoundException exception = assertThrows(
                 NotFoundException.class,
                 () -> themeFactory.getTheme(BASE_THEME_ID));
 
-        assertEquals(NOT_FOUND_MESSAGE, exception.getMessage());
-
         verify(themesRepository, times(1)).findById(BASE_THEME_ID);
-
     }
 }
