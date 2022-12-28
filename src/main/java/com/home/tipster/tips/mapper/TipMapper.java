@@ -25,6 +25,4 @@ public interface TipMapper {
     List<TipDto> toDto(List<Tip> tips);
 
     void update(Tip tip, @MappingTarget Tip oldTip);
-
-
 }

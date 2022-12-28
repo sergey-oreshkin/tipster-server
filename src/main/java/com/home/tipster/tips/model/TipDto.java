@@ -1,5 +1,6 @@
 package com.home.tipster.tips.model;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Size;
  * @author Andrey Boyarov
  */
 @Data
+@Builder
 public class TipDto {
 
     private Long id;

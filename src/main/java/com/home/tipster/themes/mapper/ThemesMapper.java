@@ -1,4 +1,4 @@
-package com.home.tipster.themes.service;
+package com.home.tipster.themes.mapper;
 
 import com.home.tipster.themes.dto.ThemeDto;
 import com.home.tipster.themes.model.Theme;
