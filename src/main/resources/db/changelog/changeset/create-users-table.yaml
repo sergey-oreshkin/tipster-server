@@ -1,25 +1,30 @@
 databaseChangeLog:
   - changeSet:
       id: create-users
-      author: Irina Slipchenko
+      author: Sergey Oreshkin
       changes:
         - createTable:
             tableName: users
             columns:
               - column:
                   name: id
-                  type: bigint
-                  autoIncrement: true
+                  type: varchar(30)
                   constraints:
                     primaryKey: true
                     nullable: false
+                    unique: true
               - column:
-                  name: login
-                  type: varchar(200)
+                  name: registration_provider
+                  type: varchar(10)
                   constraints:
                     nullable: false
               - column:
-                  name: password
-                  type: varchar(50)
-                  constraints:
-                    nullable: false
+                  name: name
+                  type: varchar(150)
+              - column:
+                  name: picture_url
+                  type: varchar(500)
+              - column:
+                  name: created
+                  type: timestamp
+                  defaultValueComputed: current_timestamp
