@@ -45,8 +45,8 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             );
         }
         usersRepository.save(user);
-        log.info("Save or update user with id:{}, name:{}, pictureUrl:{}, registrationProvider:{}"
-                , user.getId(), user.getName(), user.getPictureUrl(), user.getRegistrationProvider().name());
+        log.info("Save or update user with id:{}, name:{}, pictureUrl:{}, registrationProvider:{}",
+                user.getId(), user.getName(), user.getPictureUrl(), user.getRegistrationProvider().name());
         return oAuth2User;
     }
 }
