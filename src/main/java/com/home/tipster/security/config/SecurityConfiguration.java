@@ -40,7 +40,7 @@ public class SecurityConfiguration {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests(request -> request
-                        .antMatchers("/", "/oauth2/**").permitAll()
+                        .antMatchers("/oauth2/**").permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling(exceptionHandlingConfigurer -> exceptionHandlingConfigurer
                         .authenticationEntryPoint(failureEntryPoint)

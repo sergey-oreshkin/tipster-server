@@ -5,12 +5,14 @@ import com.home.tipster.users.model.RegistrationProvider;
 import com.home.tipster.users.model.UserEntity;
 import com.home.tipster.users.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
@@ -43,6 +45,8 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             );
         }
         usersRepository.save(user);
+        log.info("Save or update user with id:{}, name:{}, pictureUrl:{}, registrationProvider:{}"
+                , user.getId(), user.getName(), user.getPictureUrl(), user.getRegistrationProvider().name());
         return oAuth2User;
     }
 }
