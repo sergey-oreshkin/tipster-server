@@ -27,10 +27,11 @@ databaseChangeLog:
                   name: updated
                   type: timestamp
                   defaultValueComputed: current_timestamp
-#              - column:
-#                  name: creator
-#                  type: bigint
-#                  constraints:
-#                    foreignKeyName: users_themes_fk
-#                    referencedTableName: users
-#                    referencedColumnNames: id
+              - column:
+                  name: creator
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: users_themes_fk
+                    referencedTableName: users
+                    referencedColumnNames: id
